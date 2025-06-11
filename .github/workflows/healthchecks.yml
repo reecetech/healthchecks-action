@@ -31,7 +31,7 @@ jobs:
         with:
          files: dist
       - name: Run Post Action
-        uses: ./.github/workflows/action.yaml@CLOUD-1492
+        uses: reecegroup/healthchecks-action@CLOUD-1492
         with:
           ping-url: "https://healthchecks.io/ping"
           run-status: "success"
