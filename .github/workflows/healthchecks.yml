@@ -23,9 +23,7 @@ jobs:
             node-version-file: ".nvmrc"    
      
       - name: Buildy build 🏋️
-        run: |
-            npm ci
-            npm run build
+        run: npm ci
 
       - id: changes
         name: Verify changed files 🔎
