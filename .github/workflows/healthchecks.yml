@@ -1,0 +1,22 @@
+name: Healthchecks Monitor
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: CLOUD-1492
+     
+
+      - name: Run Post Action
+        uses: ./action.yaml
+        with:
+          ping-url: "https://healthchecks.io/ping"
+          run-status: "success"
