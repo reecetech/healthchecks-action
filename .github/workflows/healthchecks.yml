@@ -6,8 +6,13 @@ on:
       - main
 
 jobs:
-  monitor:
-    runs-on: ubuntu-latest
+  build:
+    name: Build library
+    runs-on: [ubuntu-24.04]
+
+    permissions:
+      id-token: write
+      contents: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
