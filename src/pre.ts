@@ -5,6 +5,7 @@ import { fetchWithRetry } from "./utils";
 async function run(): Promise<void> {
   try {
     const pingUrl = core.getInput("ping-url");
+    core.info(`Input ping-url: ${pingUrl}`);
     if (!pingUrl) {
       core.setFailed("Ping URL is required.");
       return;
