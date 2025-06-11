@@ -2,13 +2,10 @@ name: Healthchecks Monitor
 description: Pings Healthchecks.io at job start and finish.
 inputs:
   ping-url:
-    description: 'Base Healthchecks.io Ping URL'
+    description: 'Healthchecks base URL'
     required: true
-  run-status:
-    description: 'Status of the job (success/failure/cancelled)'
-    required: false
-    default: 'success'
 runs:
-  using: "node20"
-  pre: ./dist/pre.js
-  post: ./dist/post.js
+  using: 'node16'
+  pre: 'dist/pre.js'
+  main: 'dist/index.js'
+  post: 'dist/post.js'

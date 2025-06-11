@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import { v4 as uuidv4 } from "uuid";
 import { fetchWithRetry } from "./utils";
 
-export async function run(): Promise<void> {
+async function run(): Promise<void> {
   try {
     const pingUrl = core.getInput("ping-url");
     if (!pingUrl) {

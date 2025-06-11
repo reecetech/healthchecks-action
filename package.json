@@ -4,11 +4,11 @@
     "description": "GitHub Action to ping Healthchecks.io at job start and finish.",
     "main": "dist/index.js",
     "scripts": {
-        "build": "esbuild src/pre.ts --bundle --platform=node --outfile=dist/pre.js && esbuild src/post.ts --bundle --platform=node --outfile=dist/post.js",
-        "lint": "eslint src/**/*.ts",
-        "test": "jest",
-        "prepare": "npm run build"
-    },
+  "build": "esbuild src/pre.ts --bundle --platform=node --outfile=dist/pre.js && esbuild src/post.ts --bundle --platform=node --outfile=dist/post.js && esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+  "lint": "eslint src/**/*.ts",
+  "test": "jest",
+  "prepare": "npm run build"
+},
     "dependencies": {
         "@actions/core": "^1.10.0",
         "@actions/github": "^5.1.0",
