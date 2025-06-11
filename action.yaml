@@ -10,5 +10,5 @@ inputs:
     default: 'success'
 runs:
   using: "node20"
-  pre: dist/pre.js
-  post: dist/post.js
+  pre: ./dist/pre.js
+  post: ./dist/post.js
