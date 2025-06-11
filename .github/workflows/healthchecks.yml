@@ -13,6 +13,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: CLOUD-1492
+      - uses: actions/setup-node@v4
+        with:
+            node-version-file: ".nvmrc"    
      
       - name: Buildy build 🏋️
         run: |
