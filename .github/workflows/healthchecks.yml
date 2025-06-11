@@ -14,7 +14,16 @@ jobs:
         with:
           ref: CLOUD-1492
      
+      - name: Buildy build 🏋️
+        run: |
+            npm i
+            npm run build
 
+      - id: changes
+        name: Verify changed files 🔎
+        uses: tj-actions/verify-changed-files@v20
+        with:
+         files: dist
       - name: Run Post Action
         uses: reecegroup/healthchecks-action@CLOUD-1492
         with:
