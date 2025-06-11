@@ -19,7 +19,7 @@ jobs:
      
       - name: Buildy build 🏋️
         run: |
-            npm i
+            npm ci
             npm run build
 
       - id: changes
