@@ -30,7 +30,13 @@ jobs:
         uses: tj-actions/verify-changed-files@v20
         with:
          files: dist
-      - name: Run Post Action
-        uses: reecegroup/healthchecks-action@CLOUD-1492
+      - id: commit
+        if: steps.changes.outputs.files_changed == 'true'
+        name: Commit dist changes 📥
+        uses: EndBug/add-and-commit@v9
         with:
-          ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"
+           message: 'Update compiled action source (dist/*.js)'
+           committer_name: 'GitHub Actions'
+           committer_email: 'actions@github.com'
+           add: 'dist'   
+      
