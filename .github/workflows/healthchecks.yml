@@ -3,7 +3,7 @@ name: Healthchecks Monitor
 on:
   push:
     branches:
-      - "**"
+      - "main"
 
 jobs:
   build:

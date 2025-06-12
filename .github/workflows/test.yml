@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          ref: CLOUD-1492
+          ref: CLOUD-149
       
       - name: Run Post Action
         uses: reecegroup/healthchecks-action@CLOUD-1492
