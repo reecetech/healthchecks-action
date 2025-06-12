@@ -55,3 +55,8 @@ jobs:
           committer_name: 'GitHub Actions'
           committer_email: 'actions@github.com'
           add: 'dist'
+
+      - name: Run Post Action
+        uses: reecegroup/healthchecks-action@CLOUD-1492
+        with:
+          ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"
