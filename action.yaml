@@ -1,5 +1,5 @@
 ---
-name: Healthchecks Monitor
+name: Healthchecks Ping Action
 description: Pings Healthchecks at job start and finish.
 
 branding:
