@@ -1,7 +1,7 @@
 ---
 name: Healthchecks Ping Action
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - "**"
@@ -18,7 +18,7 @@ jobs:
     permissions:
       contents: write
     uses: reecegroup/reusable-workflows/.github/workflows/actions-release-reusable-workflow.yml@v2
-  
+
   build:
     name: Build library
     runs-on: [ubuntu-24.04]
@@ -35,7 +35,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-            node-version-file: ".nvmrc"    
+          node-version-file: ".nvmrc"
 
       - name: Buildy build 🏋️
         run: npm ci
@@ -44,14 +44,14 @@ jobs:
         name: Verify changed files 🔎
         uses: tj-actions/verify-changed-files@v20
         with:
-         files: dist
+          files: dist
 
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
         name: Commit dist changes 📥
         uses: EndBug/add-and-commit@v9
         with:
-           message: 'Update compiled action source (dist/*.js)'
-           committer_name: 'GitHub Actions'
-           committer_email: 'actions@github.com'
-           add: 'dist'
+          message: 'Update compiled action source (dist/*.js)'
+          committer_name: 'GitHub Actions'
+          committer_email: 'actions@github.com'
+          add: 'dist'
