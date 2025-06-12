@@ -1,4 +1,4 @@
-name: Healthchecks Monitor
+name: Healthchecks Test
 
 on:
   push:
