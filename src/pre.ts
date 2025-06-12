@@ -4,7 +4,7 @@ import { fetchWithRetry } from "./utils";
 
 async function run(): Promise<void> {
   try {
-    const pingUrl = core.getInput("ping-url");
+    const pingUrl: string = core.getInput("ping-url");
     core.info(`Input ping-url: ${pingUrl}`);
     if (!pingUrl) {
       core.setFailed("Ping URL is required.");
@@ -12,13 +12,15 @@ async function run(): Promise<void> {
     }
 
     const uuid = uuidv4();
-    core.info(`ping url: ${pingUrl}`);
-    core.saveState("uuid", uuid);
     core.info(`Generated UUID: ${uuid}`);
+    core.saveState("uuid", uuid);
 
     await fetchWithRetry(`${pingUrl}/start?rid=${uuid}`);
-    core.info("Start ping sent.");
+    core.info(`Start ping sent with UUID: ${uuid}`);
   } catch (error) {
+    core.error(`Error occurred: ${(error as Error).message}`);
     core.setFailed((error as Error).message);
   }
 }
+
+run();
