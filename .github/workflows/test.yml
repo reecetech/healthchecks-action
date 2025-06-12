@@ -1,0 +1,25 @@
+name: Healthchecks Monitor
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build library
+    runs-on: [ubuntu-latest]
+
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: CLOUD-1492
+      
+      - name: Run Post Action
+        uses: reecegroup/healthchecks-action@CLOUD-1492
+        with:
+          ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"
