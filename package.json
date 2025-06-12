@@ -1,7 +1,7 @@
 {
     "name": "healthchecks-action",
     "version": "1.0.0",
-    "description": "GitHub Action to ping Healthchecks.io at job start and finish.",
+    "description": "GitHub Action to ping Healthchecks at job start and finish.",
     "main": "dist/index.js",
     "scripts": {
   "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/index.js && esbuild src/pre.ts --bundle --platform=node --outfile=dist/pre/index.js",

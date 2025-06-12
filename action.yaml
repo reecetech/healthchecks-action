@@ -1,8 +1,14 @@
+---
 name: Healthchecks Monitor
-description: Pings Healthchecks.io at job start and finish.
+description: Pings Healthchecks at job start and finish.
+
+branding:
+  icon: check-circle
+  color: blue
+
 inputs:
   ping-url:
-    description: 'Healthchecks base URL'
+    description: 'Healthchecks ping URL'
     required: true
 runs:
   using: 'node20'

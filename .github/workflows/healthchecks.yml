@@ -1,4 +1,5 @@
-name: Healthchecks Monitor
+---
+name: Healthchecks Ping Action
 
 on:
   push:
@@ -6,9 +7,24 @@ on:
       - "**"
 
 jobs:
+  checks:
+    name: Standard checks
+    uses: reecegroup/cloud-engineering-reusable-workflows/.github/workflows/default.yaml@v0
+    permissions:
+      id-token: write
+      contents: read
+
+  release:
+    permissions:
+      contents: write
+    uses: reecegroup/reusable-workflows/.github/workflows/actions-release-reusable-workflow.yml@v2
+  
   build:
     name: Build library
-    runs-on: [self-hosted, Linux]
+    runs-on: [ubuntu-24.04]
+    needs: [checks, release]
+    if: ${{ github.ref_name != github.event.repository.default_branch }}
+
 
     permissions:
       id-token: write
@@ -16,12 +32,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          ref: CLOUD-1492
+
       - uses: actions/setup-node@v4
         with:
             node-version-file: ".nvmrc"    
-     
+
       - name: Buildy build 🏋️
         run: npm ci
 
@@ -30,6 +45,7 @@ jobs:
         uses: tj-actions/verify-changed-files@v20
         with:
          files: dist
+
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
         name: Commit dist changes 📥
@@ -38,9 +54,4 @@ jobs:
            message: 'Update compiled action source (dist/*.js)'
            committer_name: 'GitHub Actions'
            committer_email: 'actions@github.com'
-           add: 'dist' 
-      - name: Run Post Action
-        uses: reecegroup/healthchecks-action@CLOUD-1492
-        with:
-            ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"       
-    
+           add: 'dist'
