@@ -26179,6 +26179,7 @@ async function fetchWithRetry(url, retries = 5, delay = 2e3) {
           `Attempt ${attempt} failed: ${errorMessage}. Retrying in ${delay}ms...`
         );
         await new Promise((resolve) => setTimeout(resolve, delay));
+      } else {
         throw new Error(`Failed after ${retries} attempts: ${errorMessage}`);
       }
     }
