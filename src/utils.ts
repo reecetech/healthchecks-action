@@ -20,6 +20,7 @@ export async function fetchWithRetry(
           `Attempt ${attempt} failed: ${errorMessage}. Retrying in ${delay}ms...`
         );
         await new Promise((resolve) => setTimeout(resolve, delay));
+      } else {
         throw new Error(`Failed after ${retries} attempts: ${errorMessage}`);
       }
     }
