@@ -3,7 +3,7 @@ name: Healthchecks Test
 on:
   push:
     branches:
-      - "**"
+      - main
 
 jobs:
   build:

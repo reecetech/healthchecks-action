@@ -26227,10 +26227,12 @@ async function fetchWithRetry(url, retries = 5, delay = 2e3) {
 }
 
 // src/pre.ts
+function constructPingUrl(baseUrl, uuid) {
+  return `${baseUrl}/start?rid=${uuid}`;
+}
 async function run() {
   try {
     const pingUrl = core2.getInput("ping-url");
-    core2.info(`Input ping-url: ${pingUrl}`);
     if (!pingUrl) {
       core2.setFailed("Ping URL is required.");
       return;
@@ -26238,8 +26240,10 @@ async function run() {
     const uuid = v4_default();
     core2.info(`Generated UUID: ${uuid}`);
     core2.saveState("uuid", uuid);
-    await fetchWithRetry(`${pingUrl}/start?rid=${uuid}`);
-    core2.info(`Start ping sent with UUID: ${uuid}`);
+    const fullUrl = constructPingUrl(pingUrl, uuid);
+    core2.info(`Constructed ping URL: ${fullUrl}`);
+    await fetchWithRetry(fullUrl);
+    core2.info(`Start ping sent successfully with UUID: ${uuid}`);
   } catch (error2) {
     core2.error(`Error occurred: ${error2.message}`);
     core2.setFailed(error2.message);
