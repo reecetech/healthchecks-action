@@ -16,9 +16,16 @@ permissions:
 
 ---
 
-## Outputs
+## Inputs
+
+<!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
 
 
+| INPUT DEFAULT  |      DESCRIPTION               | Required |
+|----------------|--------------------------------|----------|
+| ping-url       | Ping URL for Healthchecks      | true     |
+
+<!-- AUTO-DOC-INPUT:END -->
 
 ---
 
