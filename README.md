@@ -18,13 +18,7 @@ permissions:
 
 ## Outputs
 
-<!-- AUTO-DOC-OUTPUT:START - Do not remove or modify this section -->
 
-| OUTPUT    | DESCRIPTION                    | Required |
-|-----------|--------------------------------|----------|
-| ping-url  | Ping URL for Healthchecks      | true     |
-
-<!-- AUTO-DOC-OUTPUT:END -->
 
 ---
 
