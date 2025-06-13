@@ -1,0 +1,12 @@
+---
+# vim: set ft=yaml sw=2:
+
+extends: default
+
+rules:
+  line-length:
+    max: 141
+    level: warning
+  indentation:
+    spaces: 2
+    indent-sequences: true
