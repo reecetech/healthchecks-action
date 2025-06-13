@@ -20,10 +20,9 @@ permissions:
 
 <!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
 
-
-| INPUT DEFAULT  |      DESCRIPTION               | Required |
-|----------------|--------------------------------|----------|
-| ping-url       | Ping URL for Healthchecks      | true     |
+|  INPUT   |      DESCRIPTION      | REQUIRED | DEFAULT |
+|----------|-----------------------|----------|---------|
+| ping-url | Healthchecks ping URL |   true   |         |
 
 <!-- AUTO-DOC-INPUT:END -->
 
