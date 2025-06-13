@@ -7,17 +7,30 @@ on:  # yamllint disable-line rule:truthy
       - "**"
 
 jobs:
-
-  build:
-    name: Build library
-    runs-on: [ubuntu-24.04]
-    if: ${{ github.ref_name != github.event.repository.default_branch }}
-    permissions:
-      id-token: write
-      contents: write
+  yamllint:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - id: checkout
+        name: Checkout code 🛒
         uses: actions/checkout@v4
+
+      - id: yamllint
+        name: Run yamllint 📃
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          strict: true
+
+  update-doc:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - id: checkout
+        name: Checkout code 🛒
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -26,23 +39,81 @@ jobs:
       - name: Buildy build 🏋️
         run: npm ci
 
+      - id: auto-doc
+        name: Run auto-doc 📃
+        uses: tj-actions/auto-doc@v3.6.0
+        with:
+          filename: "action.yaml"
+
       - id: changes
         name: Verify changed files 🔎
         uses: tj-actions/verify-changed-files@v20
         with:
-          files: dist
+          files: |
+            dist
 
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
-        name: Commit dist changes 📥
+        name: Commit README changes 📥
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Update compiled action source (dist/*.js)'
           committer_name: 'GitHub Actions'
           committer_email: 'actions@github.com'
-          add: 'dist'
-
+          add: dist
       - name: Run Post Action
         uses: reecetech/healthchecks-action@CLOUD-1492
         with:
           ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"
+          run-status: ${{ job.status }}
+
+
+  release:
+    needs:
+      - yamllint
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == github.event.repository.default_branch }}
+    permissions:
+      contents: write
+    steps:
+      - id: checkout
+        name: Checkout code 🛒
+        uses: actions/checkout@v4
+
+      - id: version
+        name: Calculate next version 🔢
+        uses: reecetech/version-increment@2024.10.1
+        with:
+          scheme: semver
+          increment: minor
+
+      - id: github-release
+        name: Create Github Release 📦
+        uses: softprops/action-gh-release@v2.2.2
+        with:
+          tag_name: ${{ steps.version.outputs.v-version }}
+          prerelease: false
+          draft: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: push-short-tag
+        name: Create release short tag 🏷
+        uses: richardsimko/update-tag@v1.0.11
+        with:
+          tag_name: ${{ steps.version.outputs.major-v-version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: output-version
+        name: Version noted summary page 📝
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo -e "## ✨ Published\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Name: ${{ github.event.repository.name }}\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Version: ${{ steps.version.outputs.v-version }}\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Moved tag: ${{ steps.version.outputs.major-v-version }}\n" \
+            | tee -a "${GITHUB_STEP_SUMMARY}"
