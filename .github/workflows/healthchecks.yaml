@@ -7,22 +7,10 @@ on:  # yamllint disable-line rule:truthy
       - "**"
 
 jobs:
-  checks:
-    name: Standard checks
-    uses: reecegroup/cloud-engineering-reusable-workflows/.github/workflows/default.yaml@v0
-    permissions:
-      id-token: write
-      contents: read
-
-  release:
-    permissions:
-      contents: write
-    uses: reecegroup/reusable-workflows/.github/workflows/actions-release-reusable-workflow.yml@v2
 
   build:
     name: Build library
     runs-on: [ubuntu-24.04]
-    needs: [checks, release]
     if: ${{ github.ref_name != github.event.repository.default_branch }}
     permissions:
       id-token: write
