@@ -25,7 +25,7 @@ Add this action to your workflow as shown below:
 
 ```yaml
 - name: Healthchecks Ping
-  uses: reecegroup/healthchecks-action@v0
+  uses: reecetech/healthchecks-action@v0
   with:
     ping-url: <healthcheck ping url>
 ```

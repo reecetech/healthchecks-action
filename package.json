@@ -4,7 +4,7 @@
     "description": "GitHub Action to ping Healthchecks at job start and finish.",
     "main": "dist/index.js",
     "scripts": {
-  "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/index.js && esbuild src/pre.ts --bundle --platform=node --outfile=dist/pre/index.js",
+  "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/index.js && esbuild src/pre.ts --bundle --platform=node --outfile=dist/pre/index.js && esbuild src/post.ts --bundle --platform=node --outfile=dist/post/index.js",
   "lint": "eslint src/**/*.ts",
   "test": "jest",
   "prepare": "npm run build"
