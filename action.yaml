@@ -1,0 +1,21 @@
+---
+name: Healthchecks Ping Action
+description: Pings Healthchecks at job start and finish.
+
+branding:
+  icon: check-circle
+  color: blue
+
+inputs:
+  run-status:
+    description: 'Run status, either "success" or "failure"'
+    required: false
+    default: 'success'
+  ping-url:
+    description: 'Healthchecks ping URL'
+    required: true
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+  pre: 'dist/pre/index.js'
+  post: 'dist/post/index.js'
