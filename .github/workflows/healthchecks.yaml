@@ -39,12 +39,6 @@ jobs:
       - name: Buildy build 🏋️
         run: npm ci
 
-      - id: auto-doc
-        name: Run auto-doc 📃
-        uses: tj-actions/auto-doc@v3.6.0
-        with:
-          filename: "action.yaml"
-
       - id: changes
         name: Verify changed files 🔎
         uses: tj-actions/verify-changed-files@v20
