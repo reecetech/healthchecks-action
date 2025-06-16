@@ -37,7 +37,7 @@ jobs:
           node-version-file: ".nvmrc"
 
       - name: Buildy build 🏋️
-        run: npm ci
+        run: npm cit
 
       # - id: auto-doc
       #   name: Run auto-doc 📃
