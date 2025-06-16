@@ -57,7 +57,7 @@ jobs:
           add: dist
 
       - name: Run Ping Action
-        uses: reecetech/healthchecks-action@${{ github.ref_name }}
+        uses: reecetech/healthchecks-action@main
         with:
           ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"
           run-status: ${{ job.status }}
