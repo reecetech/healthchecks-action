@@ -37,7 +37,7 @@ jobs:
           node-version-file: ".nvmrc"
 
       - name: Buildy build 🏋️
-        run: npm ci
+        run: npm cid
 
       - id: auto-doc
         name: Run auto-doc 📃
@@ -70,6 +70,7 @@ jobs:
   release:
     needs:
       - yamllint
+      - update-doc
     runs-on: ubuntu-latest
     #  if: ${{ github.ref_name == github.event.repository.default_branch }}
     permissions:
