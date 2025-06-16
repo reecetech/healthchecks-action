@@ -10,9 +10,10 @@ This GitHub Action provides seamless integration with Healthchecks.io, allowing 
 
 <!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
 
-|  INPUT   |      DESCRIPTION      | REQUIRED | DEFAULT |
-|----------|-----------------------|----------|---------|
-| ping-url | Healthchecks ping URL |   true   |         |
+|                             INPUT                              |  TYPE  | REQUIRED |   DEFAULT   |                  DESCRIPTION                   |
+|----------------------------------------------------------------|--------|----------|-------------|------------------------------------------------|
+|    <a name="input_ping-url"></a>[ping-url](#input_ping-url)    | string |   true   |             |             Healthchecks ping URL              |
+| <a name="input_run-status"></a>[run-status](#input_run-status) | string |  false   | `"success"` | Run status, either "success" or <br>"failure"  |
 
 <!-- AUTO-DOC-INPUT:END -->
 
