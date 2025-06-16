@@ -71,7 +71,7 @@ jobs:
     needs:
       - yamllint
     runs-on: ubuntu-latest
-    if: ${{ github.ref_name == github.event.repository.default_branch }}
+    #  if: ${{ github.ref_name == github.event.repository.default_branch }}
     permissions:
       contents: write
     steps:
