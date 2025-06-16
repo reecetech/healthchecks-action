@@ -20,7 +20,7 @@ jobs:
         with:
           strict: true
 
-  update-doc:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -54,23 +54,59 @@ jobs:
 
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
-        name: Commit README changes 📥
+        name: Commit dist changes 📥
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Update compiled action source (dist/*.js)'
           committer_name: 'GitHub Actions'
           committer_email: 'actions@github.com'
           add: dist
+
       - name: Run Ping Action
         uses: reecetech/healthchecks-action@CLOUD-1492
         with:
           ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"
           run-status: ${{ job.status }}
 
+  update-doc:
+    runs-on: ubuntu-latest
+    needs: [yamllint, build]
+    permissions:
+      contents: write
+
+    steps:
+      - id: checkout
+        name: Checkout code 🛒
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: auto-doc
+        name: Run auto-doc 📃
+        uses: tj-actions/auto-doc@v3.6.0
+        with:
+          filename: "action.yaml"
+
+      - id: changes
+        name: Verify changed files 🔎
+        uses: tj-actions/verify-changed-files@v20
+        with:
+          files: |
+            README.md
+
+      - id: commit
+        if: steps.changes.outputs.files_changed == 'true'
+        name: Commit README changes 📥
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Update README'
+          committer_name: 'GitHub Actions'
+          committer_email: 'actions@github.com'
+          add: 'README.md'
+
   release:
-    needs:
-      - yamllint
-      - update-doc
+    needs: [yamllint, build, update-doc]
+
     runs-on: ubuntu-latest
     if: ${{ github.ref_name == github.event.repository.default_branch }}
     permissions:
