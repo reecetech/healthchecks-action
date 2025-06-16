@@ -27,6 +27,7 @@ Add this action to your workflow as shown below:
   uses: reecetech/healthchecks-action@v0
   with:
     ping-url: <healthcheck ping url>
+    run-status: ${{ job.status }}
 ```
 
 ---
