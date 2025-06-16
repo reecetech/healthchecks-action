@@ -7,7 +7,7 @@ branding:
   color: blue
 
 inputs:
-  run-status: 
+  run-status:
     description: 'Run status, either "success" or "failure"'
     required: false
     default: 'success'
