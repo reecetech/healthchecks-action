@@ -76,7 +76,7 @@ jobs:
       - name: Run Ping Action
         uses: reecetech/healthchecks-action@version-under-test
         with:
-          ping-url: "https://healthchecks.reecetech.cloud/ping/37c7429a-c65a-48b3-afb2-70b7edac6a64"
+          ping-url: ${{ secrets.HEALTHCHECKS_URL }}
           run-status: ${{ job.status }}
 
   update-doc:
