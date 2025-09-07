@@ -38,7 +38,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"
+          node-version-file: ".tool-versions"
 
       - name: Buildy build 🏋️
         run: npm ci
