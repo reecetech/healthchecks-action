@@ -1,7 +1,0 @@
-{
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "This is the default - it will renovate this repo on weekends only.\n    Please visit 📜 https://wiki.reecenet.org/x/nYLpBg for further options and setup tips (including auto-merging!)",
-  "extends": [
-    "github>reecegroup/renovate-presets//default/reecetech"
-  ]
-}
