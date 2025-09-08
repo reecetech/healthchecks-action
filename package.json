@@ -5,7 +5,6 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/index.js && esbuild src/pre.ts --bundle --platform=node --outfile=dist/pre/index.js && esbuild src/post.ts --bundle --platform=node --outfile=dist/post/index.js",
-        "lint": "eslint src/**/*.ts",
         "prepare": "npm run build"
     },
     "dependencies": {
@@ -18,7 +17,6 @@
         "@types/node": "^24.3.1",
         "@types/uuid": "^10.0.0",
         "esbuild": "^0.25.5",
-        "eslint": "^8.45.0",
         "typescript": "^5.9.2"
     }
 }
