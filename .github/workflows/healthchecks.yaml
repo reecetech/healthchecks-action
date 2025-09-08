@@ -63,7 +63,7 @@ jobs:
       # push a temporary tag to the repo so that we can test the action in the next job
       - id: push-tag
         name: Push temporary tag to repo 🏷
-        uses: richardsimko/update-tag@v1.0.11
+        uses: richardsimko/update-tag@v1.1.6
         with:
           tag_name: "version-under-test"
         env:
@@ -145,7 +145,7 @@ jobs:
 
       - id: push-short-tag
         name: Create release short tag 🏷
-        uses: richardsimko/update-tag@v1.0.11
+        uses: richardsimko/update-tag@v1.1.6
         with:
           tag_name: ${{ steps.version.outputs.major-v-version }}
         env:
