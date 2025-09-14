@@ -24873,7 +24873,7 @@ var init_multipart_parser = __esm({
 // src/pre.ts
 var core2 = __toESM(require_core());
 
-// node_modules/uuid/dist/stringify.js
+// node_modules/uuid/dist-node/stringify.js
 var byteToHex = [];
 for (let i2 = 0; i2 < 256; ++i2) {
   byteToHex.push((i2 + 256).toString(16).slice(1));
@@ -24882,7 +24882,7 @@ function unsafeStringify(arr, offset = 0) {
   return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
 }
 
-// node_modules/uuid/dist/rng.js
+// node_modules/uuid/dist-node/rng.js
 var import_node_crypto = require("node:crypto");
 var rnds8Pool = new Uint8Array(256);
 var poolPtr = rnds8Pool.length;
@@ -24894,11 +24894,11 @@ function rng() {
   return rnds8Pool.slice(poolPtr, poolPtr += 16);
 }
 
-// node_modules/uuid/dist/native.js
+// node_modules/uuid/dist-node/native.js
 var import_node_crypto2 = require("node:crypto");
 var native_default = { randomUUID: import_node_crypto2.randomUUID };
 
-// node_modules/uuid/dist/v4.js
+// node_modules/uuid/dist-node/v4.js
 function _v4(options, buf, offset) {
   options = options || {};
   const rnds = options.random ?? options.rng?.() ?? rng();
