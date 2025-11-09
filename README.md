@@ -2,6 +2,8 @@
 
 This GitHub Action provides seamless integration with Healthchecks.io, allowing you to monitor the health of your scheduled jobs and workflows. It automatically sends pings to your designated Healthchecks.io URL at both the beginning and end of a job's execution, ensuring you're always aware of its status.
 
+The initial ping is sent as part of a pre-action step, so you should place the Healthchecks Ping action after whatever is important in your workflow. 
+
 ---
 
 
@@ -21,7 +23,7 @@ This GitHub Action provides seamless integration with Healthchecks.io, allowing 
 
 ## Usage
 
-Add this action to your workflow as shown below:
+Add this action to the end of your workflow as shown below:
 
 ```yaml
 - name: Healthchecks Ping
