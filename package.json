@@ -14,9 +14,9 @@
         "uuid": "^13.0.0"
     },
     "devDependencies": {
-        "@types/node": "^24.10.0",
+        "@types/node": "^25.0.3",
         "@types/uuid": "^11.0.0",
-        "esbuild": "^0.25.12",
+        "esbuild": "^0.27.1",
         "typescript": "^5.9.3"
     }
 }
