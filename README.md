@@ -10,10 +10,10 @@ The initial ping is sent as part of a pre-action step, so you should place the H
 
 <!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
 
-| INPUT                                                          | TYPE   | REQUIRED | DEFAULT     | DESCRIPTION                                   |
-| -------------------------------------------------------------- | ------ | -------- | ----------- | --------------------------------------------- |
-| <a name="input_ping-url"></a>[ping-url](#input_ping-url)       | string | true     |             | Healthchecks ping URL                         |
-| <a name="input_run-status"></a>[run-status](#input_run-status) | string | false    | `"success"` | Run status, either "success" or <br>"failure" |
+|                             INPUT                              |  TYPE  | REQUIRED |   DEFAULT   |                  DESCRIPTION                   |
+|----------------------------------------------------------------|--------|----------|-------------|------------------------------------------------|
+|    <a name="input_ping-url"></a>[ping-url](#input_ping-url)    | string |   true   |             |             Healthchecks ping URL              |
+| <a name="input_run-status"></a>[run-status](#input_run-status) | string |  false   | `"success"` | Run status, either "success" or <br>"failure"  |
 
 <!-- AUTO-DOC-INPUT:END -->
 
