@@ -9,6 +9,21 @@ export async function run(): Promise<void> {
   try {
     const pingUrl = core.getInput("ping-url");
     const uuid = core.getState("uuid");
+    const runStatus = core.getInput("run-status");
+
+    if (runStatus !== "success" && runStatus !== "failure") {
+      core.setFailed(
+        `Invalid run status: ${runStatus} - MUST be 'success' or 'failure'.`,
+      );
+      return;
+    }
+
+    if (runStatus === "failure") {
+      core.info(
+        "Run status is 'failure'. Failure ping will be sent in the post-step.",
+      );
+      return;
+    }
 
     if (!pingUrl) {
       core.setFailed("Ping URL is required.");
