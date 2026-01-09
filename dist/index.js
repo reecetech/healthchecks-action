@@ -26366,6 +26366,13 @@ async function run() {
   try {
     const pingUrl = core2.getInput("ping-url");
     const uuid = core2.getState("uuid");
+    const runStatus = core2.getInput("run-status");
+    if (runStatus === "failure") {
+      core2.info(
+        "Run status is 'failure'. Failure ping will be sent in the post-step."
+      );
+      return;
+    }
     if (!pingUrl) {
       core2.setFailed("Ping URL is required.");
       return;
