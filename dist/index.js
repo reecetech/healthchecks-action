@@ -26367,6 +26367,12 @@ async function run() {
     const pingUrl = core2.getInput("ping-url");
     const uuid = core2.getState("uuid");
     const runStatus = core2.getInput("run-status");
+    if (runStatus !== "success" && runStatus !== "failure") {
+      core2.setFailed(
+        `Invalid run status: ${runStatus} - MUST be 'success' or 'failure'.`
+      );
+      return;
+    }
     if (runStatus === "failure") {
       core2.info(
         "Run status is 'failure'. Failure ping will be sent in the post-step."
