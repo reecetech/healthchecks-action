@@ -53,7 +53,7 @@ jobs:
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
         name: Commit dist changes 📥
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           message: 'Update compiled action source (dist/*.js)'
           committer_name: 'GitHub Actions'
@@ -108,7 +108,7 @@ jobs:
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
         name: Commit README changes 📥
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           message: 'Update README'
           committer_name: 'GitHub Actions'
