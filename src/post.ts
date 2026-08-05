@@ -6,6 +6,18 @@ function constructFailUrl(baseUrl: string, uuid: string): string {
 }
 
 export async function run(): Promise<void> {
+  let skipPings = false;
+  try {
+    skipPings = core.getBooleanInput("skip-pings");
+  } catch (error) {
+    core.setFailed((error as Error).message);
+    return;
+  }
+  if (skipPings) {
+    core.info("Healthchecks pings are disabled. Skipping failure ping.");
+    return;
+  }
+
   const pingUrl = core.getInput("ping-url");
   const uuid = core.getState("uuid");
   const runStatus = core.getInput("run-status");
