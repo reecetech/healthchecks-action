@@ -8,6 +8,12 @@ function constructPingUrl(baseUrl: string, uuid: string): string {
 
 async function run(): Promise<void> {
   try {
+    const skipPings = core.getBooleanInput("skip-pings");
+    if (skipPings) {
+      core.info("Healthchecks pings are disabled. Skipping start ping.");
+      return;
+    }
+
     const pingUrl: string = core.getInput("ping-url");
     if (!pingUrl) {
       core.setFailed("Ping URL is required.");
