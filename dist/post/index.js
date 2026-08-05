@@ -19827,7 +19827,7 @@ var require_core = __commonJS({
     exports2.getBooleanInput = getBooleanInput2;
     exports2.setOutput = setOutput;
     exports2.setCommandEcho = setCommandEcho;
-    exports2.setFailed = setFailed;
+    exports2.setFailed = setFailed2;
     exports2.isDebug = isDebug;
     exports2.debug = debug;
     exports2.error = error2;
@@ -19911,7 +19911,7 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
     function setCommandEcho(enabled) {
       (0, command_1.issue)("echo", enabled ? "on" : "off");
     }
-    function setFailed(message) {
+    function setFailed2(message) {
       process.exitCode = ExitCode.Failure;
       error2(message);
     }
@@ -26363,7 +26363,13 @@ function constructFailUrl(baseUrl, uuid) {
   return `${baseUrl}/fail?rid=${uuid}`;
 }
 async function run() {
-  const skipPings = core2.getBooleanInput("skip-pings");
+  let skipPings = false;
+  try {
+    skipPings = core2.getBooleanInput("skip-pings");
+  } catch (error2) {
+    core2.setFailed(error2.message);
+    return;
+  }
   if (skipPings) {
     core2.info("Healthchecks pings are disabled. Skipping failure ping.");
     return;
