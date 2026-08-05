@@ -79,13 +79,6 @@ jobs:
           ping-url: ${{ secrets.HEALTHCHECKS_URL }}
           run-status: ${{ job.status }}
 
-      - name: Run Disabled Ping Action
-        uses: reecetech/healthchecks-action@version-under-test
-        with:
-          ping-url: https://healthchecks.invalid/ping/test
-          run-status: ${{ job.status }}
-          skip-pings: true
-
   update-doc:
     runs-on: ubuntu-latest
     needs: [yamllint, build]
