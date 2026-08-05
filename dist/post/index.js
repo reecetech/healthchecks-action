@@ -19824,7 +19824,7 @@ var require_core = __commonJS({
     exports2.addPath = addPath;
     exports2.getInput = getInput2;
     exports2.getMultilineInput = getMultilineInput;
-    exports2.getBooleanInput = getBooleanInput;
+    exports2.getBooleanInput = getBooleanInput2;
     exports2.setOutput = setOutput;
     exports2.setCommandEcho = setCommandEcho;
     exports2.setFailed = setFailed;
@@ -19889,7 +19889,7 @@ var require_core = __commonJS({
       }
       return inputs.map((input) => input.trim());
     }
-    function getBooleanInput(name, options) {
+    function getBooleanInput2(name, options) {
       const trueValue = ["true", "True", "TRUE"];
       const falseValue = ["false", "False", "FALSE"];
       const val = getInput2(name, options);
@@ -26363,6 +26363,11 @@ function constructFailUrl(baseUrl, uuid) {
   return `${baseUrl}/fail?rid=${uuid}`;
 }
 async function run() {
+  const skipPings = core2.getBooleanInput("skip-pings");
+  if (skipPings) {
+    core2.info("Healthchecks pings are disabled. Skipping failure ping.");
+    return;
+  }
   const pingUrl = core2.getInput("ping-url");
   const uuid = core2.getState("uuid");
   const runStatus = core2.getInput("run-status");

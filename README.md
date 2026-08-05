@@ -31,6 +31,21 @@ Add this action to the end of your workflow as shown below:
     run-status: ${{ job.status }}
 ```
 
+To skip all Healthchecks pings for manually dispatched workflows while retaining
+the default behaviour for every other trigger:
+
+```yaml
+- name: Healthchecks Ping
+  uses: reecetech/healthchecks-action@v0
+  with:
+    ping-url: <healthcheck ping url>
+    run-status: ${{ job.status }}
+    skip-pings: ${{ github.event_name == 'workflow_dispatch' }}
+```
+
+The `skip-pings` input is optional and defaults to `false`, so existing uses of
+the action continue to send pings without any changes.
+
 ---
 
 ## How It Works

@@ -7,6 +7,10 @@ branding:
   color: blue
 
 inputs:
+  skip-pings:
+    description: 'Whether to skip sending pings to Healthchecks'
+    required: false
+    default: 'false'
   run-status:
     description: 'Run status, either "success" or "failure"'
     required: false
