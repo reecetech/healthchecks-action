@@ -10,11 +10,11 @@ The initial ping is sent as part of a pre-action step, so you should place the H
 
 <!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
 
-|                             INPUT                              |  TYPE  | REQUIRED |   DEFAULT   |                    DESCRIPTION                     |
-|----------------------------------------------------------------|--------|----------|-------------|----------------------------------------------------|
-|    <a name="input_ping-url"></a>[ping-url](#input_ping-url)    | string |   true   |             |               Healthchecks ping URL                |
-| <a name="input_run-status"></a>[run-status](#input_run-status) | string |  false   | `"success"` |   Run status, either "success" or <br>"failure"    |
-| <a name="input_skip-pings"></a>[skip-pings](#input_skip-pings) | string |  false   |  `"false"`  | Whether to skip sending pings <br>to Healthchecks  |
+|                             INPUT                              |  TYPE  | REQUIRED |   DEFAULT   |                                    DESCRIPTION                                     |
+|----------------------------------------------------------------|--------|----------|-------------|------------------------------------------------------------------------------------|
+|    <a name="input_ping-url"></a>[ping-url](#input_ping-url)    | string |   true   |             |                               Healthchecks ping URL                                |
+| <a name="input_run-status"></a>[run-status](#input_run-status) | string |  false   | `"success"` |                   Run status, either "success" or <br>"failure"                    |
+| <a name="input_skip-pings"></a>[skip-pings](#input_skip-pings) | string |  false   |  `"false"`  | Set to true to skip <br>sending pings to Healthchecks (expects "true" or "false")  |
 
 <!-- AUTO-DOC-INPUT:END -->
 
