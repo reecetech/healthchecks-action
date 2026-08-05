@@ -10,10 +10,11 @@ The initial ping is sent as part of a pre-action step, so you should place the H
 
 <!-- AUTO-DOC-INPUT:START - Do not remove or modify this section -->
 
-|                             INPUT                              |  TYPE  | REQUIRED |   DEFAULT   |                  DESCRIPTION                   |
-|----------------------------------------------------------------|--------|----------|-------------|------------------------------------------------|
-|    <a name="input_ping-url"></a>[ping-url](#input_ping-url)    | string |   true   |             |             Healthchecks ping URL              |
-| <a name="input_run-status"></a>[run-status](#input_run-status) | string |  false   | `"success"` | Run status, either "success" or <br>"failure"  |
+|                             INPUT                              |  TYPE  | REQUIRED |   DEFAULT   |                    DESCRIPTION                     |
+|----------------------------------------------------------------|--------|----------|-------------|----------------------------------------------------|
+|    <a name="input_ping-url"></a>[ping-url](#input_ping-url)    | string |   true   |             |               Healthchecks ping URL                |
+| <a name="input_run-status"></a>[run-status](#input_run-status) | string |  false   | `"success"` |   Run status, either "success" or <br>"failure"    |
+| <a name="input_skip-pings"></a>[skip-pings](#input_skip-pings) | string |  false   |  `"false"`  | Whether to skip sending pings <br>to Healthchecks  |
 
 <!-- AUTO-DOC-INPUT:END -->
 
@@ -30,6 +31,21 @@ Add this action to the end of your workflow as shown below:
     ping-url: <healthcheck ping url>
     run-status: ${{ job.status }}
 ```
+
+To skip all Healthchecks pings for manually dispatched workflows while retaining
+the default behaviour for every other trigger:
+
+```yaml
+- name: Healthchecks Ping
+  uses: reecetech/healthchecks-action@v0
+  with:
+    ping-url: <healthcheck ping url>
+    run-status: ${{ job.status }}
+    skip-pings: ${{ github.event_name == 'workflow_dispatch' }}
+```
+
+The `skip-pings` input is optional and defaults to `false`, so existing uses of
+the action continue to send pings without any changes.
 
 ---
 

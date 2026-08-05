@@ -19823,7 +19823,7 @@ var require_core = __commonJS({
     exports2.addPath = addPath;
     exports2.getInput = getInput2;
     exports2.getMultilineInput = getMultilineInput;
-    exports2.getBooleanInput = getBooleanInput;
+    exports2.getBooleanInput = getBooleanInput2;
     exports2.setOutput = setOutput;
     exports2.setCommandEcho = setCommandEcho;
     exports2.setFailed = setFailed2;
@@ -19888,7 +19888,7 @@ var require_core = __commonJS({
       }
       return inputs.map((input) => input.trim());
     }
-    function getBooleanInput(name, options) {
+    function getBooleanInput2(name, options) {
       const trueValue = ["true", "True", "TRUE"];
       const falseValue = ["false", "False", "FALSE"];
       const val = getInput2(name, options);
@@ -26412,6 +26412,11 @@ function constructPingUrl(baseUrl, uuid) {
 }
 async function run() {
   try {
+    const skipPings = core2.getBooleanInput("skip-pings");
+    if (skipPings) {
+      core2.info("Healthchecks pings are disabled. Skipping start ping.");
+      return;
+    }
     const pingUrl = core2.getInput("ping-url");
     if (!pingUrl) {
       core2.setFailed("Ping URL is required.");
