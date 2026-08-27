@@ -16,7 +16,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout code 🛒
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - id: yamllint
         name: Run yamllint 📃
@@ -32,11 +32,11 @@ jobs:
     steps:
       - id: checkout
         name: Checkout code 🛒
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version-file: ".tool-versions"
 
@@ -53,7 +53,7 @@ jobs:
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
         name: Commit dist changes 📥
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@v11
         with:
           message: 'Update compiled action source (dist/*.js)'
           committer_name: 'GitHub Actions'
@@ -63,7 +63,7 @@ jobs:
       # push a temporary tag to the repo so that we can test the action in the next job
       - id: push-tag
         name: Push temporary tag to repo 🏷
-        uses: richardsimko/update-tag@v1.1.6
+        uses: richardsimko/update-tag@v3.0.0
         with:
           tag_name: "version-under-test"
         env:
@@ -88,7 +88,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout code 🛒
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -108,7 +108,7 @@ jobs:
       - id: commit
         if: steps.changes.outputs.files_changed == 'true'
         name: Commit README changes 📥
-        uses: EndBug/add-and-commit@v10
+        uses: EndBug/add-and-commit@v11
         with:
           message: 'Update README'
           committer_name: 'GitHub Actions'
@@ -125,7 +125,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout code 🛒
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - id: version
         name: Calculate next version 🔢
@@ -136,7 +136,7 @@ jobs:
 
       - id: github-release
         name: Create Github Release 📦
-        uses: softprops/action-gh-release@v2.5.0
+        uses: softprops/action-gh-release@v3.0.2
         with:
           tag_name: ${{ steps.version.outputs.v-version }}
           prerelease: false
@@ -145,7 +145,7 @@ jobs:
 
       - id: push-short-tag
         name: Create release short tag 🏷
-        uses: richardsimko/update-tag@v1.1.6
+        uses: richardsimko/update-tag@v3.0.0
         with:
           tag_name: ${{ steps.version.outputs.major-v-version }}
         env:
